@@ -9,7 +9,7 @@ menuitems:
 socials:
   - title: Github
     link: https://github.com/nikkeop
-    logo_image: /img/github.svg
+    logo_image: /img/mark-github-16.svg
   - title: Linkedin
     link: https://www.linkedin.com/in/niklas-oppermann-eng
     logo_image: /img/linkedin.svg      
