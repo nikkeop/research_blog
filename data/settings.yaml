@@ -14,12 +14,12 @@ sticky_header: true
 dark_header: false
 transparent_header: false
 dark_footer: true
-customcursor: true
+customcursor: false
 intersectionobserver: true
 filter_has_numbers: true
 page_size: 3
 preheader: 
-  active: true
+  active: false
   is_light: true
 enable_search: false
-enable_webshop: true
+enable_webshop: false

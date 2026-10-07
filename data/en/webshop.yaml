@@ -3,14 +3,14 @@ checkout_link: /checkout
 payment_link: /payment
 thankyou_link: /thankyou
 products_link: /webshop
-show_cart_icon: true
+show_cart_icon: false
 send_order_to_mail: joost@vdschee.nl
 form_handler: https://www.usecue.com/hugobricksform.php
 pos_id: 21
 currency_code: USD
 currency_symbol: $
 shipping:
-  active: true
+  active: false
   options:
     - title: Shipping NL
       label: The Netherlands

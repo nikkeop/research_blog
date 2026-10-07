@@ -1,4 +1,4 @@
-baseURL: https://www.hugobricks2.preview.usecue.com
+baseURL: https://science.oppernik.de
 defaultContentLanguage: en
 
 # The stylesheet is authored under `static/css/`, so that is where Hugo Pipes
@@ -11,26 +11,6 @@ languages:
     label: English
     contentDir: content/en
     weight: 1
-  nl:
-    locale: nl
-    label: Nederlands
-    contentDir: content/nl
-    weight: 2
-  de:
-    locale: de
-    label: Deutsch
-    contentDir: content/de
-    weight: 3
-  cs:
-    locale: cs
-    label: Čeština
-    contentDir: content/cs
-    weight: 4
-  ko:
-    locale: ko
-    label: 한국어
-    contentDir: content/ko
-    weight: 5
 
 params:
   sections:

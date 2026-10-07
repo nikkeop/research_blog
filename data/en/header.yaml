@@ -1,6 +1,6 @@
 logo_image:
-logo_subtitle: The Ultimate Hugo Theme (v2)
-dark_header: false
+logo_subtitle: Learning about robotics and AI
+dark_header: true
 mobile_view_width: 1100
 menuitems:
   - title: Headers
@@ -57,7 +57,7 @@ menuitems:
       - title: POS software
         link: /demo-pos/
 cta:
-  active: true
+  active: false
   title: Get started
   link: /get-started/
-preheader: open Mon-Fri from 9-5
+#preheader: open Mon-Fri from 9-5
