@@ -2,10 +2,10 @@
 title: cta
 ---
 
-## Get started with Hugobricks today!
+## Questions or feedback?
 
-Experience the future of web development with Hugo and stackable content bricks. Build lightning-fast static sites with ease and flexibility.
+I'm happy to hear from you, whether it's a question, a correction, or an idea for my research.
 
-[Get started now](/get-started/){:.button}
+[Get in touch](/contact/){:.button}
 
 ![](/uploads/illustrations/cuate/server.svg)

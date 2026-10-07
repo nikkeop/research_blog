@@ -11,6 +11,13 @@ languages:
     label: English
     contentDir: content/en
     weight: 1
+  # German is prepared (data/de, i18n/de.yaml, content/de) but not yet live.
+  # Uncomment to publish it under /de/.
+  # de:
+  #   locale: de
+  #   label: Deutsch
+  #   contentDir: content/de
+  #   weight: 2
 
 params:
   sections:

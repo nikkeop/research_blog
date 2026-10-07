@@ -2,20 +2,15 @@
 title: About
 ---
 
-![This is not me](/uploads/photos/avatars/2.jpeg){:.colorize.about}
+<!-- TODO: put a photo at static/uploads/photos/me.jpg and uncomment the line below -->
+<!-- ![Niklas Oppermann](/uploads/photos/me.jpg){:.colorize.about} -->
 
-# Hey, my name is Joost
+# Hi, I'm Niklas
 
-Together with my friend 'Fenix' I have built Hugobricks, a theme that allows you to create a website by stacking content bricks. The guy in the picture is not me, but an avatar from the internet. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed.
+I'm a master's student at the Technical University of Munich (TUM), working on robotics and AI. TODO: your study programme, your research interests, and what you did before.
+
+This site started as a public notebook for my master's thesis. After that I plan to keep it as a general research blog.
 
 {{< socialbuttons >}}
 
----
-
-## Get started with Hugobricks today!
-
-Experience the future of web development with Hugo and stackable content bricks. Build lightning-fast static sites with ease and flexibility.
-
-[Get started now](/get-started/){:.button}
-
-![](/uploads/illustrations/cuate/server.svg)
+---.cta

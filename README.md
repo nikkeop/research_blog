@@ -3,6 +3,22 @@
 This is the repository for my static website, where I intend to publish short posts about my research, currently my master's thesis.
 
 
+## Writing a post
+
+```sh
+hugo new content posts/my-post-title.md   # creates a draft
+hugo server -D                            # preview at http://localhost:1313, drafts included
+```
+
+Set `draft: false` when the post is ready. Give thesis posts `tags: [thesis]`; the blog's tag filter and the thesis page rely on that tag. Pushing to `main` deploys the site via GitHub Actions.
+
+`hugo server` also renders the theme's documentation at `/docs/` as a local reference. It is not part of the published site.
+
+## Contact form
+
+The form posts to [Formspree](https://formspree.io), because GitHub Pages can't run server-side code. Put your form id into `action` in `data/en/contactform.yaml`.
+
+
 ## Credits
 
 The website uses [Hugo](https://gohugo.io/) along with the free website theme [Hugobricks](https://github.com/jhvanderschee/hugobricks_v2).

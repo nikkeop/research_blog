@@ -1,9 +1,7 @@
 logo_image:
 menuitems:
-  - title: About
-    link:  /about/
-  - title: Elements
-    link:  /elements/
+  - title: Imprint
+    link:  /imprint/
   - title: Privacy policy
     link:  /privacy-policy/
 socials:

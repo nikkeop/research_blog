@@ -3,10 +3,10 @@ favicon:
   asset: /uploads/branding/brick_icon2_bw.png
   svg_image: /uploads/branding/brick_icon2_bw.svg
   ico_image: /uploads/branding/brick_icon2_bw.ico
-  apple_mobile_web_app_title: Hugobricks
+  apple_mobile_web_app_title: Niklas Oppermann
   site_webmanifest:
-    name: Hugobricks The Ultimate Hugo Theme
-    shortname: Hugobricks
+    name: Niklas Oppermann — Research
+    shortname: N. Oppermann
     theme_color: "#000000"
     background_color: "#000000"
 color_name:

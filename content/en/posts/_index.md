@@ -8,18 +8,10 @@ url: /blog/
 
 {{< breadcrumbs >}}
 
-# Blog posts
+# Blog
 
-This is a demo of the blog. In ultricies vel enim vel pulvinar. Quisque finibus sem velit, sed consequat mi ullamcorper vitae. Proin finibus tristique sollicitudin.
+Short posts about my research: progress on my master's thesis, papers I've read, things I tried, and what came of them. Filter by tag to follow one topic.
 
 {{< blog >}}
 
----
-
-## Get started with Hugobricks today!
-
-Experience the future of web development with Hugo and stackable content bricks. Build lightning-fast static sites with ease and flexibility.
-
-[Get started now](/get-started/){:.button}
-
-![](/uploads/illustrations/cuate/server.svg)
+---.cta

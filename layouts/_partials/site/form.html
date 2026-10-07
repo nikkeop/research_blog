@@ -11,7 +11,8 @@
     control, and it is mirrored in the visible label;
   - with `placeholders: true` the label is still rendered, visually hidden,
     rather than being replaced by a placeholder that vanishes on typing;
-  - the spam trap is `hidden` and `aria-hidden`, not an off-screen image;
+  - the spam trap is `hidden` and `aria-hidden`, not an off-screen image, and
+    is named `_gotcha`, which Formspree recognises and silently discards;
   - ids are namespaced, so two forms on one page cannot collide.
 
   `Id` names the form: it lands on the `<form>` itself, so the form can be
@@ -60,7 +61,7 @@
 
         <div hidden aria-hidden="true">
             <label for="{{ $id }}-website">{{ i18n "Leave this field empty" }}</label>
-            <input type="text" id="{{ $id }}-website" name="website" tabindex="-1" autocomplete="off">
+            <input type="text" id="{{ $id }}-website" name="_gotcha" tabindex="-1" autocomplete="off">
         </div>
     </fieldset>
 </form>

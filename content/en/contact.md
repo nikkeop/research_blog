@@ -1,26 +1,17 @@
 ---
-title: Contact us
+title: Contact
 ---
 
 {{< breadcrumbs >}}
 
-# Contact us
+# Contact
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed.
+Questions about a post, ideas for my thesis, or something I got wrong? I'd like to hear from you. Use the form below, or email me at [niklas.oppermann@tum.de](mailto:niklas.oppermann@tum.de).
 
 ---
 
 {{< contactform >}}
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed.
-
-Soetendaal 7\
-1081BL Amsterdam\
-The Netherlands
-
-joost@vdschee.nl\
-+31 618 518 928
+You can also find me here:
 
 {{< socialbuttons >}}
-
----.map

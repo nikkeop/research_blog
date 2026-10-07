@@ -1,9 +1,11 @@
-action: /form.php
+# GitHub Pages only serves static files, so the form posts to Formspree.
+# Create a form at https://formspree.io and replace YOUR_FORM_ID with its id.
+action: https://formspree.io/f/YOUR_FORM_ID
 placeholders: false
 fields: 
 - name: title
   input_type: html
-  label: <h3>Tell us a bit about yourself</h3>
+  label: <h3>Send me a message</h3>
   required: true
 - name: name
   input_type: text
@@ -16,12 +18,12 @@ fields:
 - name: message
   input_type: textarea
   label: Message
-  required: false
-- name: terms
+  required: true
+- name: consent
   input_type: checkbox
-  label: I accept the terms and conditions
+  label: I agree that my details are processed to answer my message, as described in the <a href="/privacy-policy/">privacy policy</a>.
   required: true
 - name: submit
   input_type: submit
-  label: Submit form
+  label: Send message
   required: true

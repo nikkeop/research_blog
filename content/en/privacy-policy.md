@@ -2,28 +2,32 @@
 title: Privacy policy
 ---
 
+{{< breadcrumbs >}}
+
 # Privacy policy
 
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis illum nesciunt commodi vel nisi ut alias excepturi ipsum, totam, labore tempora, odit ex iste tempore sed.
+<!-- TODO: this is a starting point, not legal advice. Check it before publishing. -->
+
+This page explains what personal data is processed when you visit this website, and why.
 
 ---
 
-## Article 1
+## Controller
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat, nulla et scelerisque volutpat, elit felis condimentum odio, et bibendum lacus sem sed turpis. Quisque aliquet orci quis massa scelerisque gravida. Cras maximus lacus et orci lacinia fermentum. Integer venenatis bibendum condimentum. Maecenas non rutrum magna. Sed varius metus sit amet augue condimentum, quis faucibus nulla tempor. Phasellus nec ipsum dolor. Aliquam non maximus orci.
+Niklas Oppermann, see the [imprint](/imprint/) for contact details.
 
-### Article 1.1
+## Hosting
 
-Integer sollicitudin dui quis nibh tincidunt, et pharetra nulla varius. Vestibulum malesuada quam dapibus lacus molestie, sed maximus nulla sagittis. Ut dui quam, convallis eu justo quis, posuere sodales dolor. Maecenas eu sem et purus finibus auctor in vel dolor. Fusce vitae diam pellentesque, suscipit nisl nec, varius erat. Curabitur condimentum mauris ut sapien rhoncus, quis venenatis purus pulvinar. Ut in imperdiet augue, et porttitor magna. Praesent euismod urna ut lectus pretium suscipit. Sed nec mauris in nunc condimentum viverra. Praesent vitae hendrerit sem, eu suscipit arcu. Ut sollicitudin dolor lacus, nec interdum purus volutpat in. Phasellus aliquet quis nunc vitae maximus.
+This website is hosted on GitHub Pages (GitHub Inc., USA). When you visit the site, GitHub processes your IP address and technical data such as browser type and time of access in server logs, to deliver the site and keep it secure (Art. 6 (1) (f) GDPR). See [GitHub's privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 
-### Article 1.2
+## Contact form
 
-Integer sollicitudin dui quis nibh tincidunt, et pharetra nulla varius. Vestibulum malesuada quam dapibus lacus molestie, sed maximus nulla sagittis. Ut dui quam, convallis eu justo quis, posuere sodales dolor. Maecenas eu sem et purus finibus auctor in vel dolor. Fusce vitae diam pellentesque, suscipit nisl nec, varius erat. Curabitur condimentum mauris ut sapien rhoncus, quis venenatis purus pulvinar. Ut in imperdiet augue, et porttitor magna. Praesent euismod urna ut lectus pretium suscipit. Sed nec mauris in nunc condimentum viverra. Praesent vitae hendrerit sem, eu suscipit arcu. Ut sollicitudin dolor lacus, nec interdum purus volutpat in. Phasellus aliquet quis nunc vitae maximus.
+If you use the contact form, your name, email address and message are sent through Formspree (Formspree Inc., USA) and forwarded to me by email. I use them only to answer you (Art. 6 (1) (a) and (b) GDPR) and delete them once they are no longer needed. See [Formspree's privacy policy](https://formspree.io/legal/privacy-policy/). You can also email me directly instead.
 
-## Article 2
+## Cookies, tracking and fonts
 
-Mauris in nisi ex. Etiam ultricies ipsum id turpis blandit bibendum. Donec posuere elit nec odio vehicula blandit. Aliquam nulla velit, sagittis vitae tellus ut, efficitur faucibus diam. Maecenas id egestas sapien. Nunc sit amet ullamcorper risus. Etiam bibendum mattis ullamcorper. Nulla interdum ornare ipsum, quis efficitur libero tincidunt sed.
+This website uses no cookies, no analytics and no tracking. Fonts are served from this website itself, not loaded from Google.
 
-In ultricies vel enim vel pulvinar. Quisque finibus sem velit, sed consequat mi ullamcorper vitae. Proin finibus tristique sollicitudin. Phasellus sit amet iaculis nisi. Duis sit amet massa cursus, dapibus erat a, eleifend justo. Cras in felis tristique, aliquet est at, ultrices leo. Donec accumsan at quam id volutpat.
+## Your rights
 
-Curabitur sit amet laoreet urna. Donec vel lobortis nunc. Aliquam scelerisque ultrices ipsum vitae gravida. Nam semper, nibh vitae porttitor auctor, quam dui faucibus diam, sit amet vulputate ligula nibh sed dui. Cras viverra nisl vitae dictum auctor. Aliquam rhoncus dolor nibh, sit amet maximus eros blandit vitae. Sed maximus dui sit amet nibh pulvinar volutpat. Nam odio purus, porta quis ultrices vitae, ultricies non justo. Vestibulum elementum elementum vulputate. Proin facilisis ipsum ipsum, vel ornare orci vehicula sed. Duis congue sit amet est ornare convallis. Etiam viverra bibendum elit vitae blandit.
+You have the right to access, rectify, erase and restrict the processing of your data, to data portability, to object, and to lodge a complaint with a supervisory authority. To exercise these rights, contact me using the details in the [imprint](/imprint/).
