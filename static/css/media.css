@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Components for a personal site of three sections
+
+   The `photo` / `photos` shortcodes, the click-to-load `routemap`, the
+   previous / next links under an article, and the furniture the cards gained
+   for lists that mix sections. Plus the accent band and menu underline that
+   tell the sections apart.
+   ========================================================================== */
+
+/* -- section accent ------------------------------------------------------ */
+
+/* A band of the page's accent along the top edge of the banner: the one
+   place the section colour shows on every page, whatever bricks it holds.
+   A pseudo-element rather than a border, so the banner keeps its height and
+   the transparent banner's offset maths in site.js stays right. */
+.siteheader::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    block-size: 0.25rem;
+    background: var(--accent);
+    z-index: 1;
+}
+
+/* Each top-level menu item underlines in the accent of the section it leads
+   to (`data-color` from `site/menu.html`), a touch heavier than the theme's
+   hairline so the colour reads. The transparent banner keeps its white. */
+.mainnav > ul > li[data-color]::after { background: var(--accent); block-size: 0.15rem; }
+
+/* -- cards --------------------------------------------------------------- */
+
+/* The name of the section a card comes from, in that section's accent — on
+   the home page's mixed list of latest posts. */
+section.posts li .badge {
+    display: inline-block;
+    margin-block-end: 0.5rem;
+    padding: 0.1rem 0.6rem;
+    border-radius: var(--radius-s);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* An illustration on a card (the research and projects overview cards use
+   the theme's SVGs until there is a photo) is shown whole on a tint rather
+   than cropped to the card's 2:1 like a photo. */
+section.posts li img[src$=".svg"] {
+    object-fit: contain;
+    padding: 1rem;
+    background: color-mix(in srgb, var(--accent) 8%, var(--page));
+}
+
+/* A list with nothing in it yet. */
+p.empty { color: var(--textMedium); font-style: italic; }
+
+/* -- photo / photos ------------------------------------------------------ */
+
+figure.photo { margin: var(--flow) 0; }
+figure.photo a { display: block; }
+figure.photo img {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+    border-radius: var(--radius);
+}
+figure.photo figcaption {
+    margin-block-start: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--textMedium);
+    text-align: center;
+}
+
+/* A grid of photos. Without `cols` it fits as many ~14rem columns as there
+   is room for; the pictures are cropped to one shape so the rows line up,
+   and the lightbox shows each one whole. `cols="1"` is a stack of full-width
+   photos, uncropped — the way the old blog showed single-column galleries. */
+ul.photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr));
+    gap: 0.75rem;
+    margin: var(--flow) 0;
+    padding: 0;
+    list-style: none;
+}
+ul.photos[style*="--cols"] { grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); }
+ul.photos li { margin: 0; }
+ul.photos figure.photo { margin: 0; }
+ul.photos:not([style*="--cols: 1"]) figure.photo img { aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 600px) {
+    ul.photos[style*="--cols"] { grid-template-columns: 1fr; }
+}
+
+/* -- routemap ------------------------------------------------------------ */
+
+/* The map's frame. Until it is loaded it holds the consent notice, centred
+   on a tint of the section's accent; after, the iframe fills it. */
+.routemap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    max-block-size: 80vh;
+    inline-size: 100%;
+    margin: var(--flow) 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+        linear-gradient(color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--accent) 12%, transparent)),
+        var(--light);
+}
+@media (min-width: 800px) { .routemap { aspect-ratio: 16 / 9; } }
+.routemap .consent {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    gap: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+}
+.routemap .consent p { max-inline-size: 32rem; margin: 0 auto; font-size: 0.9rem; color: var(--textDark); }
+.routemap iframe { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; border: 0; }
+
+/* -- previous / next ----------------------------------------------------- */
+
+nav.postnav .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-inline-size: 50rem;
+    padding-block: 0 var(--brick-space-tight);
+}
+nav.postnav a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 1rem 1.25rem;
+    border: 0.1rem solid var(--borderLight);
+    border-radius: var(--radius);
+    color: var(--textDark);
+    text-decoration: none;
+    transition: border-color 0.15s ease-in-out;
+}
+nav.postnav a:hover, nav.postnav a:focus-visible { border-color: var(--accent); }
+nav.postnav a.next { grid-column: 2; text-align: end; }
+nav.postnav small { color: var(--accentDarker); font-weight: 700; }
+nav.postnav small::before { content: "← "; }
+nav.postnav a.next small::before { content: none; }
+nav.postnav a.next small::after { content: " →"; }
+@media (max-width: 600px) {
+    nav.postnav .container { grid-template-columns: 1fr; }
+    nav.postnav a.next { grid-column: 1; }
+}

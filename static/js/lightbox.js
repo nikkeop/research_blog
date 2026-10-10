@@ -1,3 +1,10 @@
+// Captions go into innerHTML below; a quote or a bracket in one must not
+// end the attribute or open a tag.
+function escapeHTML(s) {
+    return String(s || '').replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+}
 function is_youtubelink(url) {
     var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     return (url.match(p)) ? RegExp.$1 : false;
@@ -125,7 +132,9 @@ elements.forEach(element => {
             var filename = href.split('/').pop();
             var split = filename.split(".");
             var name = split[0];
-            element.setAttribute('title', element.innerText);
+            // Keep a title the markup already gave (the `photo` shortcode's
+            // caption); otherwise the link text is the best caption there is.
+            if (!element.getAttribute('title')) element.setAttribute('title', element.innerText);
         }
         if (element.querySelectorAll('img').length > 0) element.classList.add('hasimage');
     }
@@ -158,7 +167,7 @@ var elements = document.querySelectorAll('a.lightbox-image');
 elements.forEach(element => {
     element.addEventListener("click", function (event) {
         event.preventDefault();
-        document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\'' + this.getAttribute('href') + '\') center center / contain no-repeat;" title="' + this.getAttribute('title') + '" ><img src="' + this.getAttribute('href') + '" alt="' + this.getAttribute('title') + '" /></div><span>' + this.getAttribute('title') + '</span>';
+        document.getElementById('lightbox').innerHTML = '<a id="close"></a><a id="next">&rsaquo;</a><a id="prev">&lsaquo;</a><div class="img" style="background: url(\'' + this.getAttribute('href') + '\') center center / contain no-repeat;" title="' + escapeHTML(this.getAttribute('title')) + '" ><img src="' + this.getAttribute('href') + '" alt="' + escapeHTML(this.getAttribute('title')) + '" /></div><span>' + escapeHTML(this.getAttribute('title')) + '</span>';
         document.body.classList.add('lightbox_visible');
 
         setGallery(this);

@@ -20,6 +20,11 @@
     `/nl/` item permanently active; comparing against the language's own home
     is the same rule without the hole.
 
+  Each top-level item carries the palette of the page it links to as
+  `data-color` — the `color_name` of the research, projects or trips section
+  — so its underline is drawn in that section's accent and the menu previews
+  the colour of where it leads. An item can also name one with `color:`.
+
   @context {dict} . Page, Items
 */ -}}
 {{- $page := .Page -}}
@@ -43,7 +48,12 @@
             {{- if eq $here (.link | relLangURL) -}}{{- $active = true -}}{{- end -}}
         {{- end -}}
 
-        <li{{ if $active }} class="active"{{ end }}>
+        {{- $color := .color -}}
+        {{- if and (not $color) .link (ne .link "/") -}}
+            {{- with site.GetPage (strings.TrimSuffix "/" .link) -}}{{- $color = .Params.color_name -}}{{- end -}}
+        {{- end -}}
+
+        <li{{ if $active }} class="active"{{ end }}{{ with $color }} data-color="{{ . }}"{{ end }}>
             <a href="{{ $link }}"{{ if $current }} aria-current="page"{{ end }}>{{ .title }}</a>
             {{- with $children -}}
                 <ul>

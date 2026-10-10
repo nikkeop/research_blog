@@ -9,7 +9,7 @@ title: About
 
 I'm a master's student at the Technical University of Munich (TUM), working on robotics and AI. TODO: your study programme, your research interests, and what you did before.
 
-This site started as a public notebook for my master's thesis. After that I plan to keep it as a general research blog.
+This site started as a public notebook for my master's thesis and has grown into my personal website: [research](/research/), [projects](/projects/) and [trips](/trips/).
 
 {{< socialbuttons >}}
 

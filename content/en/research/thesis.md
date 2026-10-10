@@ -1,5 +1,12 @@
 ---
 title: Master's thesis
+aliases: [/thesis/]
+# Built from bricks like an ordinary page, not an article (the research
+# section cascades `type: article` onto its pages), and kept out of the post
+# list, the home page and the previous / next links.
+type: page
+build:
+  list: never
 ---
 
 {{< breadcrumbs >}}
@@ -34,8 +41,8 @@ TODO: how you tackle it: methods, hardware/simulation, datasets, evaluation.
 
 ## Posts about the thesis
 
-Every post about the thesis carries the tag `thesis`. On the [blog](/blog/), pick it in the tag filter to see only those posts.
+Every post about the thesis carries the tag `thesis`. On the [research page](/research/), pick it in the tag filter to see only those posts.
 
-[Go to the blog](/blog/){:.button}
+[All research posts](/research/){:.button}
 
 ![](/uploads/illustrations/cuate/entries.svg)

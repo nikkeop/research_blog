@@ -1,0 +1,33 @@
+{{- /*
+  One photo with an optional caption, opening in the lightbox.
+
+      {{< photo src="trips/import/2024/06/img_6239-1.jpg" caption="Auto-Kolonne nach Baustelle" >}}
+
+  `src` is anything `media.html` understands: a bucket key as above, a file
+  under `static/` (`/uploads/…`) or a full url. The thumbnail is what the page
+  loads; the link — and so the lightbox — goes to the full-size file.
+
+  Wrapped in `{{< photos >}}`, several of these become a grid that the
+  lightbox pages through. On its own it is a full-width figure in the text.
+
+  `alt` defaults to the caption. Give it explicitly when the caption is a
+  joke or a place name rather than a description of what is in the picture.
+
+  @param {string} src
+  @param {string} caption (optional)
+  @param {string} alt     (optional)
+*/ -}}
+{{- $m := partial "media.html" (dict "Src" (.Get "src")) -}}
+{{- $caption := .Get "caption" -}}
+{{- $alt := .Get "alt" | default $caption -}}
+{{- $inGrid := and .Parent (eq .Parent.Name "photos") -}}
+{{- if $inGrid }}<li>{{ end -}}
+<figure class="photo">
+    <a href="{{ $m.Full }}"{{ with $caption }} title="{{ . | plainify }}"{{ end }}>
+        <img src="{{ $m.Src }}"{{ with $m.Srcset }} srcset="{{ . }}" sizes="{{ if $inGrid }}(min-width: 50rem) 25rem, 100vw{{ else }}(min-width: 50rem) 50rem, 100vw{{ end }}"{{ end }} alt="{{ $alt | plainify }}"{{ with $m.Width }} width="{{ . }}" height="{{ $m.Height }}"{{ end }} loading="lazy" decoding="async">
+    </a>
+    {{- with $caption }}
+    <figcaption>{{ . | markdownify }}</figcaption>
+    {{- end }}
+</figure>
+{{- if $inGrid }}</li>{{ end -}}

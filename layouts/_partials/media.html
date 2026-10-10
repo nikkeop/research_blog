@@ -1,0 +1,54 @@
+{{- /*
+  Resolves an image reference to the URLs a template needs.
+
+  Three kinds of reference, told apart by how they are written:
+
+  - `/uploads/photo.jpg` — a file under `static/`. It is a Hugo resource, so
+    it is resized and converted to webp here, exactly as the render hook and
+    the cards always did.
+  - `trips/import/2024/06/img_6239-1.jpg` — no scheme and no leading slash: a
+    key in the media bucket (Cloudflare R2). It is prefixed with
+    `params.media.base` from hugo.yaml, so the bucket's domain is written in
+    one place. When `params.media.thumbnails` is on, every file in the bucket
+    is expected to have a smaller sibling named `<name>.w800.<ext>` next to it
+    — `tools/media/optimize.py` writes both — and that is what cards and
+    in-text images load, while the lightbox opens the full file.
+  - `https://…` — anything else on the web. Passed through untouched.
+
+  @context {dict} . Src (string), Fill (string, optional: a `WxH` crop for
+                    local images, e.g. "600x300")
+  @returns {dict} Src    the url to put in `src`
+                  Full   the url of the largest rendition, for the lightbox
+                  Srcset a `srcset` value, or ""
+                  Width, Height  pixel size when known, else 0
+*/ -}}
+{{- $in := string .Src -}}
+{{- $out := dict "Src" $in "Full" $in "Srcset" "" "Width" 0 "Height" 0 -}}
+{{- $media := site.Params.media -}}
+
+{{- with and $in (resources.GetMatch $in) -}}
+    {{- if ne .MediaType.SubType "svg" -}}
+        {{- $img := . -}}
+        {{- with $.Fill -}}
+            {{- $img = $img.Fill (printf "%s webp Center q50" .) -}}
+        {{- else -}}
+            {{- if gt $img.Width 1920 -}}{{- $img = $img.Resize "1920x webp q50" -}}{{- else -}}{{- $img = $img.Process "webp q50" -}}{{- end -}}
+        {{- end -}}
+        {{- $full := . -}}
+        {{- if gt .Width 2000 -}}{{- $full = .Resize "2000x webp q60" -}}{{- end -}}
+        {{- $out = dict "Src" $img.RelPermalink "Full" $full.RelPermalink "Srcset" "" "Width" $img.Width "Height" $img.Height -}}
+    {{- end -}}
+{{- else -}}
+    {{- if and $in (not (hasPrefix $in "/")) (not (findRE `^[a-zA-Z][a-zA-Z0-9+.-]*:` $in 1)) -}}
+        {{- $full := printf "%s/%s" (strings.TrimSuffix "/" $media.base) $in -}}
+        {{- $src := $full -}}
+        {{- $srcset := "" -}}
+        {{- if and $media.thumbnails (findRE `(?i)\.(jpe?g|png|webp)$` $in 1) -}}
+            {{- $src = replaceRE `(?i)\.(jpe?g|png|webp)$` ".w800.$1" $full -}}
+            {{- $srcset = printf "%s 800w, %s 2000w" $src $full -}}
+        {{- end -}}
+        {{- $out = dict "Src" $src "Full" $full "Srcset" $srcset "Width" 0 "Height" 0 -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return $out -}}

@@ -55,3 +55,13 @@ Tabs: Tabs
 Search this website: Search this website
 Search via Google: Search via Google
 Search: Search
+Previous post: Previous post
+Next post: Next post
+More posts: More posts
+Nothing here yet: Nothing here yet — check back soon.
+Route map: Route map
+Load map: Load map (Google)
+routemap_notice: The route map is hosted by Google Maps. Loading it sends data to Google and may set cookies.
+posts_count:
+  one: "{{ .Count }} post"
+  other: "{{ .Count }} posts"

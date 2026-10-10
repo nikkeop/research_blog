@@ -1,0 +1,31 @@
+{{- /*
+  Links to the previous and the next post, in date order, among the posts of
+  the same section — the days of one trip, the posts of the research blog.
+  That is how a trip reads: day 3 leads on to day 4.
+
+  Only pages that show up in lists count, so a page with
+  `build: { list: never }` is neither linked to nor given links.
+
+  @context {page} .
+*/ -}}
+{{- $siblings := sort .CurrentSection.RegularPages "Date" "asc" -}}
+{{- $i := -1 -}}
+{{- range $n, $p := $siblings -}}{{- if eq $p $ -}}{{- $i = $n -}}{{- end -}}{{- end -}}
+{{- if and (ge $i 0) (gt (len $siblings) 1) -}}
+{{- /* Not `cond`: it evaluates both branches, and `index` past either end
+       of the list fails the build. */ -}}
+{{- $prev := false -}}
+{{- $next := false -}}
+{{- if gt $i 0 -}}{{- $prev = index $siblings (sub $i 1) -}}{{- end -}}
+{{- if lt $i (sub (len $siblings) 1) -}}{{- $next = index $siblings (add $i 1) -}}{{- end -}}
+<nav class="postnav" aria-label="{{ i18n "More posts" }}">
+    <div class="container">
+        {{- with $prev }}
+        <a class="prev" href="{{ .RelPermalink }}" rel="prev"><small>{{ i18n "Previous post" }}</small><span>{{ .LinkTitle }}</span></a>
+        {{- end }}
+        {{- with $next }}
+        <a class="next" href="{{ .RelPermalink }}" rel="next"><small>{{ i18n "Next post" }}</small><span>{{ .LinkTitle }}</span></a>
+        {{- end }}
+    </div>
+</nav>
+{{- end -}}

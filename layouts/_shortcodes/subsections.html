@@ -1,0 +1,37 @@
+{{- /*
+  Cards for the sections below this page — on `/trips/`, one per trip.
+
+      {{< subsections >}}
+      {{< subsections paths="/research,/projects,/trips" >}}
+
+  Each card is the section's `_index.md`: its `image`, its title, its
+  `summary` (or first paragraph), and the month range and number of posts it
+  holds, counted from the posts themselves.
+
+  Newest first, by the date of the latest post in each section. A section
+  with `list_last: true` in its front matter goes to the end regardless —
+  "Short trips" is a running feed and would otherwise always sit on top.
+
+  With `paths`, the named pages instead, in the order given — the home page's
+  overview of the three top-level sections.
+
+  The cards are `teaser_list.html`, in a `<ul class="posts">`, so the section
+  routes to the `posts` brick like any other list of cards.
+
+  @param {string} paths (optional) comma-separated page paths
+*/ -}}
+{{- $pages := slice -}}
+{{- with .Get "paths" -}}
+    {{- range split . "," -}}
+        {{- with site.GetPage (trim . " ") -}}{{- $pages = $pages | append . -}}{{- end -}}
+    {{- end -}}
+{{- else -}}
+    {{- $last := slice -}}
+    {{- range sort .Page.Sections "Date" "desc" -}}
+        {{- if .Params.list_last -}}{{- $last = $last | append . -}}{{- else -}}{{- $pages = $pages | append . -}}{{- end -}}
+    {{- end -}}
+    {{- $pages = $pages | append $last -}}
+{{- end -}}
+{{- with $pages -}}
+    {{- partial "teaser_list.html" (dict "Pages" . "Dates" true) -}}
+{{- end -}}

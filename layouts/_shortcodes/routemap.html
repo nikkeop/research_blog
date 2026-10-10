@@ -1,0 +1,25 @@
+{{- /*
+  An embedded Google My Maps map — the route map of a trip, or of all of them.
+
+      {{< routemap src="https://www.google.com/maps/d/embed?mid=1QpWtjqDLalWewV7HUeZNYyNi7k6jCKw" >}}
+
+  `src` is the embed url Google gives under "Share → Embed on my site" (only
+  the `src` of the iframe it shows). The map is click-to-load: Google sets
+  cookies the moment the iframe loads, so the page shows a placeholder with a
+  notice and a button, and `site.js` swaps the iframe in on click. Without
+  JavaScript the button is a plain link to the map on Google.
+
+  The `<div class="routemap">` is also what routes the section: the
+  `routemap` rule in `params.sections` sends it to the `wide` brick.
+
+  @param {string} src
+  @param {string} title (optional) iframe title for screen readers
+*/ -}}
+{{- $src := .Get "src" -}}
+{{- $viewer := replace $src "/maps/d/embed" "/maps/d/viewer" -}}
+<div class="routemap" data-src="{{ $src }}" data-title="{{ .Get "title" | default (i18n "Route map") }}">
+    <div class="consent">
+        <p>{{ i18n "routemap_notice" }}</p>
+        <p><a class="button" href="{{ $viewer }}" target="_blank" rel="noopener">{{ i18n "Load map" }}</a></p>
+    </div>
+</div>

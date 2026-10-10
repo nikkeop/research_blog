@@ -1,12 +1,29 @@
 logo_image:
-logo_subtitle: Learning about robotics and AI
+logo_subtitle: Research, projects & trips
 dark_header: true
 mobile_view_width: 1100
+# A top-level item that links to a section (research, projects, trips) takes
+# that section's accent for its underline automatically — see
+# layouts/_partials/site/menu.html. `items:` makes a dropdown.
 menuitems:
-  - title: Thesis
-    link: /thesis/
-  - title: Blog
-    link: /blog/
+  - title: Research
+    link: /research/
+    items:
+      - title: All posts
+        link: /research/
+      - title: Master's thesis
+        link: /research/thesis/
+  - title: Projects
+    link: /projects/
+  - title: Trips
+    link: /trips/
+    items:
+      - title: Norway 2024
+        link: /trips/norway-2024/
+      - title: China 2025
+        link: /trips/china-2025/
+      - title: Short trips
+        link: /trips/short-trips/
   - title: About
     link: /about/
   - title: Contact

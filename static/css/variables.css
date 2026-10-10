@@ -37,9 +37,23 @@
 }
 
 /* Colour themes. `color_name` in data/settings.yaml sets it site-wide, a
-   page's own `color_name` front matter overrides it. The palettes differ only
-   in the accent, so this is two tokens rather than four stylesheets. */
-:root[data-color="red"]    { --accent: #ec0f0f; --accentDarker: #e00606; }
-:root[data-color="blue"]   { --accent: #00adef; --accentDarker: #009ad5; }
-:root[data-color="green"]  { --accent: #5fb22d; --accentDarker: #4f9625; }
-:root[data-color="yellow"] { --accent: #f4b500; --accentDarker: #e6ac00; }
+   page's own `color_name` front matter overrides it, and a section's
+   `_index.md` cascades one onto every page below it — that is what gives
+   research, projects and trips their own accent. The palettes differ only
+   in the accent, so this is two tokens rather than four stylesheets.
+
+   Not scoped to `:root`: any element may carry `data-color` and repaint what
+   is inside it — a card on the home page in the colour of the section it
+   comes from, a menu item in the colour of the section it leads to. */
+[data-color="red"]    { --accent: #ec0f0f; --accentDarker: #e00606; }
+[data-color="blue"]   { --accent: #00adef; --accentDarker: #009ad5; }
+[data-color="green"]  { --accent: #5fb22d; --accentDarker: #4f9625; }
+[data-color="yellow"] { --accent: #f4b500; --accentDarker: #e6ac00; }
+
+/* The site's own palettes, a shade deeper than the theme's so white button
+   text stays legible on them. slate: home, about, contact · ocean: research
+   · forest: projects · sunset: trips. */
+[data-color="slate"]  { --accent: #455a64; --accentDarker: #37474f; }
+[data-color="ocean"]  { --accent: #1e78c8; --accentDarker: #1967ad; }
+[data-color="forest"] { --accent: #3d8b2f; --accentDarker: #337526; }
+[data-color="sunset"] { --accent: #e0640b; --accentDarker: #c45607; }

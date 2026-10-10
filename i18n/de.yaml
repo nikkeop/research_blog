@@ -55,3 +55,13 @@ Tabs: Tabs
 Search this website: Diese Website durchsuchen
 Search via Google: Suche über Google
 Search: Suchen
+Previous post: Vorheriger Beitrag
+Next post: Nächster Beitrag
+More posts: Weitere Beiträge
+Nothing here yet: Hier gibt es noch nichts — bald mehr.
+Route map: Streckenkarte
+Load map: Karte laden (Google)
+routemap_notice: Die Streckenkarte wird von Google Maps bereitgestellt. Beim Laden werden Daten an Google übertragen und ggf. Cookies gesetzt.
+posts_count:
+  one: "{{ .Count }} Beitrag"
+  other: "{{ .Count }} Beiträge"

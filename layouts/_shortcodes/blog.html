@@ -1,32 +1,61 @@
 {{- /*
-  Renders the site's posts as a grid of teaser cards, newest first, under a
-  filter that narrows them by tag.
+  Renders posts as a grid of teaser cards under a filter that narrows them by
+  tag.
 
       {{< blog >}}
+      {{< blog order="asc" pagesize="12" >}}
+      {{< blog section="research,trips" limit="3" filter="false" badges="true" >}}
 
-  The posts are the pages of `content/<lang>/posts/`, so the list is per
-  language like everything else, and a new post appears here by existing
-  rather than by being added to a hand-written list. The tags are the ones the
-  posts carry in their front matter; `filter_has_numbers` in
-  `data/settings.yaml` decides whether each is offered with a count.
+  Which posts:
+  - by default, every page below the page the shortcode is written on — so on
+    `/research/` the research posts, on `/trips/norway-2024/` the days of that
+    trip, on `/trips/short-trips/` the short trips. A page can stay out of the
+    list with `build: { list: never }` in its front matter (the thesis page
+    does: it lives in the research section but is not a post).
+  - with `section`, the posts of the named top-level sections instead,
+    comma-separated — the home page's "latest posts" across the site.
 
-  The cards themselves are `teaser_list.html`, which the services listing uses
-  too — the two are the same grid with different pages in them. Only the blog
-  asks for dates, and only the blog is filtered and paged.
+  @param {string} section  (optional) e.g. "research" or "research,trips"
+  @param {string} order    (optional) "desc" (default, newest first) or "asc"
+                           — a multi-day trip reads best from day 1 on
+  @param {int}    pagesize (optional) cards before "Load more"; default
+                           `page_size` in data/settings.yaml
+  @param {int}    limit    (optional) show only the first n posts, no paging
+  @param {bool}   filter   (optional) "false" hides the tag filter
+  @param {bool}   dates    (optional) "false" hides the dates (projects)
+  @param {bool}   badges   (optional) "true" names each card's section
 
-  The filter and the paging are `site.js`'s work, ported from the original
-  theme's `filter.js`. The markup here is what it needs and nothing more: the
-  tags on a `<select>`, the tags of each post on its card, the page size on the
-  list, and an empty `<ul class="tags">` for the chips it builds. Without that
-  file the select does nothing, the button stays hidden and every card is
-  visible — the whole list, unfiltered and unpaged, which is the honest
-  fallback for a page whose content is all here already.
+  The cards themselves are `teaser_list.html`. The filter and the paging are
+  `site.js`'s work, ported from the original theme's `filter.js`. The markup
+  here is what it needs and nothing more: the tags on a `<select>`, the tags
+  of each post on its card, the page size on the list, and an empty
+  `<ul class="tags">` for the chips it builds. Without that file the select
+  does nothing, the button stays hidden and every card is visible — the whole
+  list, unfiltered and unpaged, which is the honest fallback for a page whose
+  content is all here already. `site.js` drives the first filtered list on a
+  page, so write one `blog` with a filter per page.
 
   The `<ul class="posts">` the partial emits is also what routes the section:
   the `posts` rule in `params.sections` matches `ul.posts`, so writing this
-  shortcode into a section is what picks the brick that wraps it.
+  shortcode into a section is what picks the brick that wraps it. A list with
+  nothing in it yet says so, in a paragraph that routes like any prose.
 */ -}}
-{{- $posts := sort (where site.RegularPages "Section" "posts") "Date" "desc" -}}
+{{- $posts := slice -}}
+{{- with .Get "section" -}}
+    {{- $names := slice -}}
+    {{- range split . "," -}}{{- $names = $names | append (trim . " ") -}}{{- end -}}
+    {{- $posts = where site.RegularPages "Section" "in" $names -}}
+{{- else -}}
+    {{- $posts = .Page.RegularPagesRecursive -}}
+{{- end -}}
+{{- $posts = sort $posts "Date" (.Get "order" | default "desc") -}}
+{{- $limit := int (.Get "limit" | default 0) -}}
+{{- if $limit -}}{{- $posts = first $limit $posts -}}{{- end -}}
+{{- $pagesize := cond (gt $limit 0) 0 (int (.Get "pagesize" | default hugo.Data.settings.page_size)) -}}
+{{- $filter := ne (.Get "filter") "false" -}}
+{{- $dates := ne (.Get "dates") "false" -}}
+{{- $badges := eq (.Get "badges") "true" -}}
+
 {{- with $posts -}}
 
 {{- /* `with` skips the blanks: a post whose front matter leaves a `tags:`
@@ -35,6 +64,7 @@
 {{- range . -}}
     {{- range .Params.tags -}}{{- with . -}}{{- $tags = $tags | append . -}}{{- end -}}{{- end -}}
 {{- end -}}
+{{- if $filter -}}
 {{- with sort (uniq $tags) -}}
 <form class="filter">
     <label class="sr-only" for="tagfilter">{{ i18n "Filter posts by tag" }}</label>
@@ -45,7 +75,12 @@
     <ul class="tags" aria-live="polite"></ul>
 </form>
 {{- end -}}
+{{- end -}}
 
-{{- partial "teaser_list.html" (dict "Pages" . "Dates" true "PageSize" hugo.Data.settings.page_size) -}}
+{{- partial "teaser_list.html" (dict "Pages" . "Dates" $dates "PageSize" $pagesize "Badges" $badges) -}}
+{{- if $pagesize }}
 <p class="loadmore"><button type="button" class="button secondary ghost smaller" hidden>{{ i18n "Load more posts" }}…</button></p>
+{{- end -}}
+{{- else -}}
+<p class="empty">{{ i18n "Nothing here yet" }}</p>
 {{- end -}}

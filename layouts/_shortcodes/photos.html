@@ -1,0 +1,19 @@
+{{- /*
+  A grid of photos that the lightbox pages through as one gallery.
+
+      {{< photos >}}
+      {{< photo src="trips/import/2024/06/img_6252-1.jpg" >}}
+      {{< photo src="trips/import/2024/06/img_6253-1.jpg" caption="…" >}}
+      {{< /photos >}}
+
+  The grid is a `<ul>` because the lightbox groups the links it finds in the
+  closest list: the photos of one grid page through each other, and a photo
+  elsewhere in the post does not join in.
+
+  @param {int} cols  (optional) fixed number of columns, e.g. 1 for a stack
+                     of full-width photos. Without it the grid fits as many
+                     ~14rem columns as there is room for.
+*/ -}}
+<ul class="photos"{{ with .Get "cols" }} style="--cols: {{ . }}"{{ end }}>
+{{ .Inner }}
+</ul>

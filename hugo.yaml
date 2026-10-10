@@ -20,7 +20,29 @@ languages:
   #   weight: 2
 
 params:
+  # Images that live in the media bucket (Cloudflare R2). A page refers to one
+  # by its key alone — `trips/import/2024/06/img_6239-1.jpg` — and
+  # `layouts/_partials/media.html` puts `base` in front of it, so the bucket's
+  # domain is written here and nowhere else. With `thumbnails` on, every image
+  # in the bucket has a smaller `<name>.w800.<ext>` next to it (written by
+  # tools/media/optimize.py) that cards and in-text photos load first.
+  media:
+    base: https://site-media.oppernik.de
+    thumbnails: true
+
   sections:
+    # The route map and photo grids want the width; without these rules a
+    # short section of them would land in the narrow `small` brick.
+    - title: wide
+      has: div.routemap
+      not_has:
+      is:
+      not_is:
+    - title: wide
+      has: ul.photos
+      not_has:
+      is:
+      not_is:
     - title: wide
       has: h2#buttons
       not_has:

@@ -5,11 +5,13 @@ favicon:
   ico_image: /uploads/branding/brick_icon2_bw.ico
   apple_mobile_web_app_title: Niklas Oppermann
   site_webmanifest:
-    name: Niklas Oppermann — Research
+    name: Niklas Oppermann
     shortname: N. Oppermann
     theme_color: "#000000"
     background_color: "#000000"
-color_name:
+# Site-wide palette (static/css/variables.css). Research, projects and trips
+# override it from their section's `_index.md`.
+color_name: slate
 sticky_header: true
 dark_header: false
 transparent_header: false

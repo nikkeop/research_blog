@@ -249,4 +249,24 @@
         select(0);
         widget.classList.add("ready");
     });
+
+    /* -- route map -----------------------------------------------------
+       The `routemap` shortcode. Google sets cookies as soon as a map loads,
+       so the page ships a notice and a link to the map on Google instead of
+       the iframe. Clicking the link here swaps the iframe in, in place;
+       without this file the link simply opens the map in a new tab. */
+    Array.prototype.forEach.call(document.querySelectorAll(".routemap[data-src]"), function (map) {
+        var load = map.querySelector(".consent a");
+        if (!load) return;
+        load.addEventListener("click", function (event) {
+            event.preventDefault();
+            var frame = document.createElement("iframe");
+            frame.src = map.getAttribute("data-src");
+            frame.title = map.getAttribute("data-title") || "";
+            frame.setAttribute("allowfullscreen", "");
+            frame.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
+            map.replaceChildren(frame);
+            frame.focus();
+        });
+    });
 })();

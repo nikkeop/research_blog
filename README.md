@@ -1,16 +1,21 @@
 ## What am I looking at?
 
-This is the repository for my static website, where I intend to publish short posts about my research, currently my master's thesis.
+This is the repository for my personal website: research notes (currently my master's thesis), projects, and trips. Each of the three sections has its own accent colour. See [rebuild.md](rebuild.md) for how the site is put together and how the old WordPress travel blog was imported.
 
 
 ## Writing a post
 
 ```sh
-hugo new content posts/my-post-title.md   # creates a draft
-hugo server -D                            # preview at http://localhost:1313, drafts included
+hugo new content research/my-post-title.md           # a research post
+hugo new content trips/short-trips/my-weekend.md     # a short trip
+hugo new content trips/norway-2024/tag-42.md         # a day of a multi-day trip
+hugo new content projects/my-project.md              # a project page (bricks)
+hugo server -D                                       # preview at http://localhost:1313, drafts included
 ```
 
-Set `draft: false` when the post is ready. Give thesis posts `tags: [thesis]`; the blog's tag filter and the thesis page rely on that tag. Pushing to `main` deploys the site via GitHub Actions.
+Each command starts from the matching file in `archetypes/`. Set `draft: false` when the post is ready. Give thesis posts `tags: [thesis]`; the research page's tag filter relies on that tag. Pushing to `main` deploys the site via GitHub Actions.
+
+Photos live in the media bucket at `site-media.oppernik.de`, not in this repository. Prepare them with `python3 tools/media/optimize.py <folder> <out> --prefix trips/<trip>`, upload `<out>` to the bucket, and refer to them by key: `{{< photo src="trips/<trip>/01.jpg" caption="…" >}}`.
 
 `hugo server` also renders the theme's documentation at `/docs/` as a local reference. It is not part of the published site.
 

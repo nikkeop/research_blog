@@ -2,18 +2,26 @@
 title: Home
 ---
 
-# Research notes on robotics and AI
+# Hi, I'm Niklas
 
-Hi, I'm Niklas. I'm writing my master's thesis in robotics at TUM, and this is where I share what I learn along the way: short posts on methods, experiments, dead ends and results. Later on it will become my general research blog.
+TODO: two or three sentences about you, e.g. that you study robotics at TUM, build things in your spare time and like to travel by bike. This page is the front door to all three parts of the site.
 
-[Read the blog](/blog/){:.button} [About the thesis](/thesis/){:.button}
+[About me](/about/){:.button} [Get in touch](/contact/){:.button.ghost}
 
-![](/uploads/illustrations/cuate/writing.svg)
+![](/uploads/illustrations/cuate/static-website.svg)
+
+---
+
+## What you'll find here
+
+Every section has its own colour, so you always know where you are.
+
+{{< subsections paths="/research,/projects,/trips" >}}
 
 ---
 
 ## Latest posts
 
-{{< blog >}}
+{{< blog section="research,trips" limit="3" filter="false" badges="true" >}}
 
 ---.cta
